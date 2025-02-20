@@ -15,6 +15,7 @@ reps = 0
 
 
 def reset_timer():
+    '''Resets timer'''
     global reps
     window.after_cancel(timer)
     canvas.itemconfig(timer_text, text='00:00')
@@ -25,6 +26,7 @@ def reset_timer():
 
 
 def start_timer():
+    '''Starts Timer'''
     global reps
     reps += 1
 
@@ -55,6 +57,7 @@ def start_timer():
 
 
 def timer_count(count):
+    '''Timer Countdown'''
     global reps
     count_min = math.floor(count / 60)
     count_sec = count % 60
@@ -81,25 +84,29 @@ window.title('POMODORO')
 window.minsize(300, 323)
 window.config(padx=100, pady=50, bg=YELLOW)
 
+
 canvas = Canvas(bg=YELLOW, highlightthickness=0)
-img = PhotoImage(file='PythonOOP_projects.py/POMODORO TIMER/tomato.png')
+img = PhotoImage(file='./tomato.png')
 canvas.create_image(180, 100, image=img)
 timer_text = canvas.create_text(
     180, 130, text='00:00', font=(FONT_NAME, 35, 'bold'), fill='green')
 canvas.grid(column=1, row=1)
 
+# Labels
+
 timer_label = Label(text='TIMER', font=(
     FONT_NAME, 50, 'normal'), fg=GREEN, bg=YELLOW)
 timer_label.grid(column=1, row=0)
 
+mark_label = Label(fg=GREEN, bg=YELLOW, font=('Arial', 16, 'bold'))
+mark_label.grid(column=1, row=3)
+
+# Buttons
 start_button = Button(text='Start', highlightthickness=0, command=start_timer)
 start_button.grid(column=0, row=2)
 
 reset_button = Button(text='Reset', highlightthickness=0, command=reset_timer)
 reset_button.grid(column=2, row=2)
-
-mark_label = Label(fg=GREEN, bg=YELLOW, font=('Arial', 16, 'bold'))
-mark_label.grid(column=1, row=3)
 
 
 window.mainloop()
